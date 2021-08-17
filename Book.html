@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="Book.css">
+  <title>Book Parking Slot</title>
+  <script src="book.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+      <img src="logo.jfif" class="img-fluid" alt="Parking Span logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.html">About us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item active" href="Book.html">Car Parking</a></li>
+              <li><a class="dropdown-item" href="Book.html">Bike Parking</a></li>
+              <li><a class="dropdown-item" href="#">Express Car Wash</a></li>
+              <li><a class="dropdown-item" href="#">Express Bike Wash</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Contact.html">Contact us</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Enter Vehicle Number" aria-label="Search" id="car-query">
+          <button class="btn btn-outline-success" type="button" onclick="findCar()">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <h1>Book Your Place</h1>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <div class="container">
+    <form class="row g-3" id="form">
+      <div class="col-md-6">
+        <label for="inputfirstname" class="form-label">Owner's First Name</label>
+        <input type="First name" class="form-control" id="inputname">
+      </div>
+      <div class="col-md-6">
+        <label for="inputlastname" class="form-label">Owner's Last Name</label>
+        <input type="Last name" class="form-control" id="inputlname">
+      </div>
+      <div class="col-md-6">
+        <label for="inputVechname" class="form-label">Vehicle Name</label>
+        <input type="VechName" class="form-control" id="inputVechname">
+      </div>
+      <div class="col-md-6">
+        <label for="inputVechNumber" class="form-label">Vehicle Number</label>
+        <input type="VechNumber" class="form-control" id="inputVechNumber">
+      </div>
+      <div class="col-md-6">
+        <label for="entrydate" class="form-label">Entry Date</label>
+        <input type="date" class="form-control" id="entrydate">
+      </div>
+      <div class="col-md-6">
+        <label for="exitdate" class="form-label">Exit Date</label>
+        <input type="date" class="form-control" id="exitdate">
+      </div>
+      <input type="checkbox" class="btn-check" id="express-wash" autocomplete="off" value="off">
+      <label class="btn btn-outline-dark" for="express-wash" onclick="toggleCheck()">Include Express Wash</label><br />
+      <div class="d-grid gap-2 col-3 mx-auto">
+        <button class="btn btn-dark" type="button" id="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="card-wrapper">
+    <div class="card" style="width: 18rem;">
+      <img src="qrcode.jpg" class="card-img-top" alt="QR code image">
+      <div class="card-body">
+        <h5 class="card-title">On-Spot Or Monthly Pay</h5>
+        <p class="card-text">
+          Parking passes generated can be on pay-&-park or a monthly pay basis. It is FASTag
+          enabled..
+        </p>
+      </div>
+
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img src="CCTV.jpg" class="card-img-top" alt="CCTV cameras">
+      <div class="card-body">
+        <h5 class="card-title">ANPR Cameras</h5>
+        <p class="card-text">
+          having 99% accuracy capturing capability and also IP 68 certified cameras.
+        </p>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img src="Boombarrier.jpg" class="card-img-top" alt="Boombarrier">
+      <div class="card-body">
+        <h5 class="card-title">Boom Barrier</h5>
+        <p class="card-text">
+          landing speed less than 3 sec also having anti crash protection the boom is made
+          from
+          Aluminium for long lasting life.
+        </p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    let query = document.getElementById('car-query');
+    function findCar() {
+      let cars = localStorage.getItem('parked-cars');
+      if (!cars) cars = "[]";
+      cars = JSON.parse(cars);
+      let flag = true;
+      let num = query.value.trim().toLowerCase().split(" ").join("");
+      cars.forEach(car=> {
+        let vnum = car.vnum.trim().toLowerCase().split(" ").join("");
+        if (num == vnum) {
+          alert(makeString(car));
+          flag = false;
+          return;
+        }
+      })
+      flag && alert('No car found with this number!');
+    }
+    function makeString(car) {
+      return`
+           ◆ Car Details ◆
+      Owner: ${car.name}
+      Car Name: ${car.vname}
+      Car Number: ${car.vnum}
+      Entry Date: ${car.entry}
+      Exit Date: ${car.exit}
+      Included Express Wash: ${car.wash}
+      `
+    }
+  </script>
+</body>
+
+</html>

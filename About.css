@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(22, 21, 21);
+  }
+img{
+    min-height: auto;
+    width: auto;
+    padding: auto;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+.About{
+    color: white;
+    padding: 20px;
+    text-decoration: dotted;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    font-family: cursive;
+}

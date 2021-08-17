@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <style>
+    body {
+      background-image: url("Contact.jpg");
+      background-size: cover;
+    }
+    h1 {
+      font-family: cursive;
+      padding: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <title>Contact us</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+      <img src="logo.jfif" class="img-fluid" alt="Parking Span logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.html">About us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="Book.html">Car Parking</a></li>
+              <li><a class="dropdown-item" href="Book.html">Bike Parking</a></li>
+              <li><a class="dropdown-item" href="#">Express Car Wash</a></li>
+              <li><a class="dropdown-item" href="#">Express Bike Wash</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="Contact.html">Contact us</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Enter Vehicle Number" aria-label="Search" id="car-query">
+          <button class="btn btn-outline-success" type="button" onclick="findCar()">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <h1>Contact us</h1>
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+      -->
+  <div class="container">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="inputfirstname" class="form-label">First Name</label>
+        <input type="First name" class="form-control" id="inputname">
+      </div>
+      <div class="col-md-6">
+        <label for="inputlastname" class="form-label">Last Name</label>
+        <input type="Last name" class="form-control" id="inputlname">
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail4">
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword4">
+      </div>
+      <div class="col-12">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Plot no: F 27/30 sector :12 Mumbai">
+      </div>
+
+      <div class="col-md-4">
+        <label for="inputcity" class="form-label">City</label>
+        <select id="inputcity" class="form-select">
+          <option selected>Mumbai</option>
+          <option>Pune</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    let query = document.getElementById('car-query');
+    function findCar() {
+      let cars = localStorage.getItem('parked-cars');
+      if (!cars) cars = "[]";
+      cars = JSON.parse(cars);
+      let flag = true;
+      let num = query.value.trim().toLowerCase().split(" ").join("");
+      cars.forEach(car=> {
+        let vnum = car.vnum.trim().toLowerCase().split(" ").join("");
+        if (num == vnum) {
+          alert(makeString(car));
+          flag = false;
+          return;
+        }
+      })
+      flag && alert('No car found with this number!');
+    }
+    function makeString(car) {
+      return`
+           ◆ Car Details ◆
+      Owner: ${car.name}
+      Car Name: ${car.vname}
+      Car Number: ${car.vnum}
+      Entry Date: ${car.entry}
+      Exit Date: ${car.exit}
+      Included Express Wash: ${car.wash}
+      `
+    }
+  </script>
+</body>
+
+</html>
